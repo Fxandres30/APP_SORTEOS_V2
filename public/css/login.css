@@ -3,9 +3,9 @@
 .app-container {
   width: 90%;
   max-width: 250px;   /* 👈 mismo tamaño que registro */
-  margin: auto;
+  
   padding: 30px;
-  margin-top: 20%;
+  
   background: #ffffff;
   border-radius: 18px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);

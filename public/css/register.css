@@ -1,11 +1,9 @@
 /* ================= TARJETA ================= */
 
 .register-container {
-  width: 90%;
+  width: 100%;
   max-width: 250px;
-  margin: auto;
   padding: 30px;
-  margin-top: 10%;
   background: #ffffff;
   border-radius: 18px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
