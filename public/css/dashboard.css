@@ -1,0 +1,115 @@
+/* ================= BASE GENERAL ================= */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               'Segoe UI', Roboto;
+  background: linear-gradient(135deg, #e0f2fe, #f1f5f9);
+}
+
+/* ================= HEADER SUPERIOR ================= */
+
+.topbar {
+  width: 100%;
+  box-sizing: border-box;  /* 👈 esto arregla el desbordamiento */
+
+  background: #0f172a;
+  color: white;
+
+  padding: 18px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Título */
+.topbar h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+/* Botón logout */
+#logoutBtn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: #ef4444;
+  color: white;
+
+  transition: 0.25s ease;
+}
+
+#logoutBtn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* ================= CONTENEDOR PRINCIPAL ================= */
+
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  padding: 25px 20px;
+}
+
+/* ================= BIENVENIDA ================= */
+
+#welcomeText {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+/* ================= ACCIONES ================= */
+
+.actions {
+  margin-bottom: 25px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+
+  transition: 0.25s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+}
+
+/* ================= SECCIÓN DINÁMICA ================= */
+
+#dynamicSection {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  min-height: 140px;
+}
+
+#dynamicSection p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
