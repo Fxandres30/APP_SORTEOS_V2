@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- 👇 ESTO ES CLAVE PARA QUE NO SE VEA PEQUEÑO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Color barra superior en móviles -->
+  <meta name="theme-color" content="#2563eb">
+
+  <title>Login - EFAAT</title>
+
+  <!-- Conectar CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <h2 class="app-title">Iniciar sesión</h2>
+
+    <div class="form-group">
+      <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password" placeholder="Contraseña">
+    </div>
+
+    <button id="loginBtn" class="primary-btn">Entrar</button>
+
+    <p class="auth-link">
+      ¿No tienes cuenta?
+      <a href="register.html">Registrarse</a>
+    </p>
+
+  </div>
+
+  <script type="module" src="js/auth/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- 🔥 IMPORTANTE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+
+  <title>Dashboard - EFAAT</title>
+
+  <!-- CSS base general -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- CSS específicos -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <header class="topbar">
+    <h1>Panel</h1>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <h2 id="welcomeText">Cargando...</h2>
+
+    <div class="actions">
+      <button id="btnCrearRifa" class="primary-btn">
+        ➕ Crear rifa
+      </button>
+    </div>
+
+    <section id="dynamicSection">
+      <p>Bienvenido al panel.</p>
+    </section>
+  </main>
+
+</div>
+
+<!-- MODAL FUERA DEL APP CONTAINER (correcto así) -->
+<div id="modalRifa" class="modal hidden">
+  <div class="modal-content">
+    <h3>Crear nueva rifa</h3>
+
+    <form id="crearRifaForm">
+
+      <input type="text" id="titulo" placeholder="Título" required>
+      <textarea id="descripcion" placeholder="Descripción"></textarea>
+      <input type="number" id="precio" placeholder="Precio por número" required>
+
+      <h4>Cifras</h4>
+
+      <label>
+        <input type="radio" name="cifras" value="2" checked>
+        2 cifras (00-99)
+      </label>
+
+      <label>
+        <input type="radio" name="cifras" value="3">
+        3 cifras (000-999)
+      </label>
+
+      <label>
+        <input type="radio" name="cifras" value="4">
+        4 cifras (0000-9999)
+      </label>
+
+      <div class="modal-actions">
+        <button type="submit">Crear</button>
+        <button type="button" id="cerrarModal">Cancelar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/dashboard/dashboard.js"></script>
+
+</body>
+</html>
