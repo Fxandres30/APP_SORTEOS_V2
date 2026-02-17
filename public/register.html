@@ -2,23 +2,50 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+
+  <title>Registro - EFAAT</title>
+
+  <!-- Base general -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Estilos solo de registro -->
+  <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
 
-  <h2>Crear cuenta</h2>
+  <div class="app-container register-container">
 
-  <input type="text" id="name" placeholder="Nombre">
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Contraseña">
-  <input type="text" id="referralCode" placeholder="Código referido (opcional)">
+    <h2 class="app-title">Crear cuenta</h2>
 
-  <button id="registerBtn">Registrarse</button>
+    <div class="form-group">
+      <input type="text" id="name" placeholder="Nombre">
+    </div>
 
-  <p>
-    ¿Ya tienes cuenta?
-    <a href="index.html">Iniciar sesión</a>
-  </p>
+    <div class="form-group">
+      <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password" placeholder="Contraseña">
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="referralCode" placeholder="Código referido (opcional)">
+    </div>
+
+    <button id="registerBtn" class="primary-btn">
+      Registrarse
+    </button>
+
+    <p class="auth-link">
+      ¿Ya tienes cuenta?
+      <a href="index.html">Iniciar sesión</a>
+    </p>
+
+  </div>
 
   <script type="module" src="js/auth/register.js"></script>
 
