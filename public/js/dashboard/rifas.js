@@ -64,10 +64,13 @@ export function initMisRifas(session) {
             </span>
           </div>
 
-          <div class="rifa-body">
-            <h3>${rifa.titulo}</h3>
-            <p>${rifa.cifras} cifras · ${rifa.total_numeros} números</p>
-          </div>
+          <div class="rifa-middle">
+  <div class="rifa-info">
+    <h3>${rifa.titulo}</h3>
+    <span>${rifa.cifras} cifras · ${rifa.total_numeros} números</span>
+  </div>
+</div>
+
 
           <div class="rifa-actions">
             <button class="btn-ver" data-id="${rifa.id}">
