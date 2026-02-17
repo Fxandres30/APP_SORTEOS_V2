@@ -157,3 +157,42 @@
     flex-direction: column;
   }
 }
+
+
+.form-msg {
+  min-height: 20px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.form-msg.success {
+  color: #16a34a;
+}
+
+.form-msg.error {
+  color: #dc2626;
+}
+
+.global-msg {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: #16a34a;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.global-msg.show {
+  opacity: 1;
+  transform: translateY(0);
+}

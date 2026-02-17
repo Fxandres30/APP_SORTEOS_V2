@@ -52,7 +52,7 @@ export function initMisRifas(session) {
       const estado = rifa.estado || "activa";
 
       html += `
-        <div class="rifa-card">
+        <div class="rifa-card" data-id="${rifa.id}">
 
           <div class="rifa-top">
             <div class="rifa-numero">
@@ -73,9 +73,6 @@ export function initMisRifas(session) {
 
 
           <div class="rifa-actions">
-            <button class="btn-ver" data-id="${rifa.id}">
-              Ver tabla
-            </button>
             <button class="btn-edit" data-id="${rifa.id}">
               Editar
             </button>
@@ -159,6 +156,27 @@ export function initMisRifas(session) {
         btnFinalizar.remove();
       });
     });
+
+
+    // ===========================
+// ABRIR NÚMEROS AL TOCAR CARD
+// ===========================
+document.querySelectorAll(".rifa-card").forEach((card) => {
+  card.addEventListener("click", (e) => {
+
+    // Evita que se active si se hace click en un botón
+    if (e.target.closest("button")) return;
+
+    const id = card.dataset.id;
+
+    const rifa = rifas.find(r => r.id === id);
+
+    if (rifa) {
+      cargarVistaNumeros(rifa);
+    }
+  });
+});
+
 
     // ===========================
     // EDITAR (placeholder)

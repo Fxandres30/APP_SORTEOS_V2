@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/misrifas.css">
+  <link rel="stylesheet" href="css/numeros.css">
 </head>
 
 <body>
@@ -20,6 +21,8 @@
   <h1>Panel</h1>
   <button id="logoutBtn">Cerrar sesión</button>
 </header>
+
+<div id="globalMsg" class="global-msg"></div>
 
 <div class="app-container">
 
@@ -55,6 +58,7 @@
   <section id="mensajesView" class="view hidden"></section>
   <section id="horariosView" class="view hidden"></section>
   <section id="configuracionView" class="view hidden"></section>
+  <section id="numerosView" class="view hidden"></section>
 
 </div>
 
@@ -67,6 +71,7 @@
 <div id="modalRifa" class="modal hidden">
   <div class="modal-content">
     <h3>Crear nueva rifa</h3>
+    <div id="crearRifaMsg" class="form-msg"></div>
 
     <form id="crearRifaForm">
       <input type="text" id="titulo" placeholder="Título" required>
