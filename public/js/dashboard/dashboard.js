@@ -1,39 +1,50 @@
 import { supabase } from "../services/supabase.js";
+
+import { initMisRifas } from "./rifas.js";
+import { initMensajes } from "./mensajes.js";
+import { initHorarios } from "./horarios.js";
+import { initConfiguracion } from "./configuracion.js";
 import { initCrearRifa } from "./crearRifa.js";
 
-// ==============================
-// 🔐 VERIFICAR SESIÓN
-// ==============================
-const { data: { session } } = await supabase.auth.getSession();
+document.addEventListener("DOMContentLoaded", async () => {
 
-if (!session) {
-  window.location.href = "index.html";
-}
+  try {
 
-// ==============================
-// 👤 CARGAR PERFIL
-// ==============================
-const { data: profile, error } = await supabase
-  .from("profiles")
-  .select("name")
-  .eq("id", session.user.id)
-  .single();
+    const { data: { session } } = await supabase.auth.getSession();
 
-if (error) {
-  console.error("Error cargando perfil:", error);
-}
+    if (!session) {
+      window.location.href = "index.html";
+      return;
+    }
 
-if (profile) {
-  document.getElementById("welcomeText").textContent =
-    `Bienvenido ${profile.name}`;
-}
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("name")
+      .eq("id", session.user.id)
+      .maybeSingle();
 
-// ==============================
-// 🚪 LOGOUT
-// ==============================
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-  await supabase.auth.signOut();
-  window.location.href = "index.html";
+    const welcome = document.getElementById("welcomeText");
+    if (profile && welcome) {
+      welcome.textContent = profile.name;
+    }
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await supabase.auth.signOut();
+        window.location.href = "index.html";
+      });
+    }
+
+    // 🚀 INICIALIZAR MÓDULOS
+    initMisRifas(session);
+    initMensajes(session);
+    initHorarios(session);
+    initConfiguracion(session);
+    initCrearRifa(); // SOLO AQUÍ
+
+  } catch (error) {
+    console.error("Error en dashboard:", error);
+  }
+
 });
-
-initCrearRifa ();

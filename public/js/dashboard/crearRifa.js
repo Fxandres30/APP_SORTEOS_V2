@@ -7,7 +7,7 @@ export function initCrearRifa() {
   const cerrar = document.getElementById("cerrarModal");
   const form = document.getElementById("crearRifaForm");
 
-  if (!btnCrear) return;
+  if (!btnCrear || !modal || !cerrar || !form) return;
 
   // Abrir modal
   btnCrear.addEventListener("click", () => {
@@ -26,18 +26,17 @@ export function initCrearRifa() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return;
 
-    const titulo = document.getElementById("titulo").value.trim();
-    const descripcion = document.getElementById("descripcion").value.trim();
-    const precio = Number(document.getElementById("precio").value);
-    const cifras = Number(
-      document.querySelector('input[name="cifras"]:checked').value
-    );
+    const titulo = document.getElementById("titulo")?.value.trim();
+    const descripcion = document.getElementById("descripcion")?.value.trim();
+    const precio = Number(document.getElementById("precio")?.value);
+    const cifrasInput = document.querySelector('input[name="cifras"]:checked');
 
-    if (!titulo || precio <= 0) {
+    if (!titulo || !cifrasInput || precio <= 0) {
       alert("Datos inválidos");
       return;
     }
 
+    const cifras = Number(cifrasInput.value);
     const totalNumeros = Math.pow(10, cifras);
 
     const { error } = await supabase

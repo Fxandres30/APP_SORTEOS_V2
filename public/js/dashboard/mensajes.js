@@ -1,13 +1,26 @@
-export function initMensajes() {
-  const btn = document.getElementById("btnMensajes");
-  const dynamicSection = document.getElementById("dynamicSection");
+import { showView } from "./router.js";
 
-  if (!btn) return;
+export function initMensajes(session) {
+
+  const btn = document.getElementById("btnMensajes");
+  const view = document.getElementById("mensajesView");
+
+  if (!btn || !view) return;
 
   btn.addEventListener("click", () => {
-    dynamicSection.innerHTML = `
-      <h3>📩 Mensajes</h3>
-      <p>Aquí irán los mensajes guardados.</p>
+
+    showView("mensajesView");
+
+    view.innerHTML = `
+      <div class="view-header">
+        <button id="volverDashboard">← Volver</button>
+        <h2>Mensajes</h2>
+      </div>
+
+      <p>Aquí irán los mensajes.</p>
     `;
+
+    document.getElementById("volverDashboard")
+      .addEventListener("click", () => showView("dashboard"));
   });
 }

@@ -1,0 +1,174 @@
+/* =========================
+   VISTA GENERAL
+========================= */
+.view {
+  background: #f5f7fb;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* =========================
+   HEADER SUPERIOR
+========================= */
+.view-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #2563eb;
+  color: white;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.view-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.view-header button {
+  background: white;
+  color: #2563eb;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.view-header button:hover {
+  background: #e2e8f0;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+#rifasContent {
+  padding: 20px;
+}
+
+/* =========================
+   TABLA PROFESIONAL
+========================= */
+.rifas-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.rifas-table thead {
+  background: #f1f5f9;
+}
+
+.rifas-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.rifas-table td {
+  padding: 14px;
+  font-size: 14px;
+  border-top: 1px solid #f1f5f9;
+  color: #475569;
+}
+
+.rifas-table tr:hover {
+  background: #f8fafc;
+}
+
+/* =========================
+   BOTÓN VER NÚMEROS
+========================= */
+.btn-ver {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-ver:hover {
+  background: #1e40af;
+}
+
+/* =========================
+   MENSAJES VACÍO / ERROR
+========================= */
+#rifasContent p {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #64748b;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   ACCIONES
+========================= */
+.acciones {
+  display: flex;
+  gap: 8px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.btn-ver {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.btn-ver:hover {
+  background: #1e40af;
+}
+
+.btn-edit {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.btn-edit:hover {
+  background: #d97706;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
