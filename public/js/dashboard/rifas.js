@@ -18,7 +18,6 @@ export function initMisRifas(session) {
         <button id="volverDashboard">← Volver</button>
         <h2>Mis rifas</h2>
       </div>
-
       <div id="rifasContent">
         <p>Cargando rifas...</p>
       </div>
@@ -46,30 +45,33 @@ export function initMisRifas(session) {
       return;
     }
 
-    let html = `
-      <table class="rifas-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Título</th>
-            <th>Cifras</th>
-            <th>Total</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-    `;
+    let html = `<div class="rifas-list">`;
 
     rifas.forEach((rifa) => {
+
+      const estado = rifa.estado || "activa";
+
       html += `
-        <tr>
-          <td>${String(rifa.numero_rifa).padStart(9, "0")}</td>
-          <td>${rifa.titulo}</td>
-          <td>${rifa.cifras}</td>
-          <td>${rifa.total_numeros}</td>
-          <td class="acciones">
+        <div class="rifa-card">
+
+          <div class="rifa-top">
+            <div class="rifa-numero">
+              #${String(rifa.numero_rifa).padStart(9, "0")}
+            </div>
+
+            <span class="estado ${estado}">
+              ${estado === "activa" ? "Activa" : "Finalizada"}
+            </span>
+          </div>
+
+          <div class="rifa-body">
+            <h3>${rifa.titulo}</h3>
+            <p>${rifa.cifras} cifras · ${rifa.total_numeros} números</p>
+          </div>
+
+          <div class="rifa-actions">
             <button class="btn-ver" data-id="${rifa.id}">
-              Ver
+              Ver tabla
             </button>
             <button class="btn-edit" data-id="${rifa.id}">
               Editar
@@ -77,17 +79,25 @@ export function initMisRifas(session) {
             <button class="btn-delete" data-id="${rifa.id}">
               Eliminar
             </button>
-          </td>
-        </tr>
+            ${
+              estado === "activa"
+                ? `<button class="btn-finalizar" data-id="${rifa.id}">
+                    Finalizar
+                  </button>`
+                : ""
+            }
+          </div>
+
+        </div>
       `;
     });
 
-    html += "</tbody></table>";
+    html += `</div>`;
     content.innerHTML = html;
 
-    // ===============================
-    // VER NÚMEROS
-    // ===============================
+    // ===========================
+    // VER TABLA
+    // ===========================
     document.querySelectorAll(".btn-ver").forEach((btnVer) => {
       btnVer.addEventListener("click", () => {
         const rifa = rifas.find(r => r.id === btnVer.dataset.id);
@@ -97,9 +107,9 @@ export function initMisRifas(session) {
       });
     });
 
-    // ===============================
-    // ELIMINAR RIFA
-    // ===============================
+    // ===========================
+    // ELIMINAR
+    // ===========================
     document.querySelectorAll(".btn-delete").forEach((btnDelete) => {
       btnDelete.addEventListener("click", async () => {
 
@@ -116,13 +126,40 @@ export function initMisRifas(session) {
           return;
         }
 
-        btnDelete.closest("tr").remove();
+        btnDelete.closest(".rifa-card").remove();
       });
     });
 
-    // ===============================
-    // EDITAR (por ahora básico)
-    // ===============================
+    // ===========================
+    // FINALIZAR
+    // ===========================
+    document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
+      btnFinalizar.addEventListener("click", async () => {
+
+        const confirmacion = confirm("¿Deseas finalizar esta rifa?");
+        if (!confirmacion) return;
+
+        const { error } = await supabase
+          .from("rifas")
+          .update({ estado: "finalizada" })
+          .eq("id", btnFinalizar.dataset.id);
+
+        if (error) {
+          alert("Error al finalizar");
+          return;
+        }
+
+        const card = btnFinalizar.closest(".rifa-card");
+        card.querySelector(".estado").className = "estado finalizada";
+        card.querySelector(".estado").textContent = "Finalizada";
+
+        btnFinalizar.remove();
+      });
+    });
+
+    // ===========================
+    // EDITAR (placeholder)
+    // ===========================
     document.querySelectorAll(".btn-edit").forEach((btnEdit) => {
       btnEdit.addEventListener("click", () => {
         alert("Vista editar próximamente 🔧");

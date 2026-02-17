@@ -2,7 +2,7 @@
    VISTA GENERAL
 ========================= */
 .view {
-  background: #f5f7fb;
+  background: #f1f5f9;
   min-height: 100vh;
   padding: 0;
 }
@@ -13,130 +13,149 @@
 .view-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  background: #2563eb;
+  gap: 16px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
   color: white;
-  padding: 18px 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
 }
 
 .view-header h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   margin: 0;
 }
 
 .view-header button {
   background: white;
-  color: #2563eb;
+  color: #1e40af;
   border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .view-header button:hover {
+  transform: translateY(-1px);
   background: #e2e8f0;
 }
 
 /* =========================
-   CONTENIDO
+   CONTENIDO GENERAL
 ========================= */
 #rifasContent {
   padding: 20px;
 }
 
 /* =========================
-   TABLA PROFESIONAL
+   LISTA DE RIFAS
 ========================= */
-.rifas-table {
-  width: 100%;
-  border-collapse: collapse;
+.rifas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   CARD RIFA
+========================= */
+.rifa-card {
   background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.2s ease;
 }
 
-.rifas-table thead {
-  background: #f1f5f9;
+.rifa-card:hover {
+  transform: translateY(-3px);
 }
 
-.rifas-table th {
-  text-align: left;
-  padding: 14px;
-  font-size: 14px;
+/* =========================
+   PARTE SUPERIOR
+========================= */
+.rifa-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rifa-numero {
   font-weight: 600;
-  color: #334155;
-}
-
-.rifas-table td {
-  padding: 14px;
   font-size: 14px;
-  border-top: 1px solid #f1f5f9;
   color: #475569;
 }
 
-.rifas-table tr:hover {
-  background: #f8fafc;
+/* =========================
+   ESTADO
+========================= */
+.estado {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.estado.activa {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.estado.finalizada {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 /* =========================
-   BOTÓN VER NÚMEROS
+   CUERPO
 ========================= */
-.btn-ver {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition: 0.2s;
+.rifa-body h3 {
+  margin: 14px 0 6px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #0f172a;
 }
 
-.btn-ver:hover {
-  background: #1e40af;
-}
-
-/* =========================
-   MENSAJES VACÍO / ERROR
-========================= */
-#rifasContent p {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
+.rifa-body p {
+  font-size: 14px;
   color: #64748b;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
 }
 
 /* =========================
    ACCIONES
 ========================= */
-.acciones {
+.rifa-actions {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 /* =========================
    BOTONES
 ========================= */
+.btn-ver,
+.btn-edit,
+.btn-delete,
+.btn-finalizar {
+  border: none;
+  padding: 9px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
 .btn-ver {
   background: #2563eb;
   color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: 0.2s;
 }
 
 .btn-ver:hover {
@@ -146,12 +165,6 @@
 .btn-edit {
   background: #f59e0b;
   color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: 0.2s;
 }
 
 .btn-edit:hover {
@@ -161,14 +174,30 @@
 .btn-delete {
   background: #ef4444;
   color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: 0.2s;
 }
 
 .btn-delete:hover {
   background: #dc2626;
+}
+
+.btn-finalizar {
+  background: #0f172a;
+  color: white;
+}
+
+.btn-finalizar:hover {
+  background: #020617;
+}
+
+/* =========================
+   MENSAJE VACÍO
+========================= */
+#rifasContent p {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  color: #64748b;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
