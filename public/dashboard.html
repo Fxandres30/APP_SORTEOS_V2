@@ -20,22 +20,45 @@
   </header>
 
 <div class="app-container">
-  
-  <main>
-    <h2 id="welcomeText">Cargando...</h2>
 
+  <main>
+
+    <!-- Tarjeta informativa -->
+    <div class="promo-card">
+      🎁 Invita a un amigo y desbloquea beneficios exclusivos
+    </div>
+
+    <!-- Bienvenida grande -->
+    <h2 class="welcome-title">
+      Bienvenido,<br>
+      <span id="welcomeText">Cargando...</span>
+    </h2>
+
+    <!-- Botón principal -->
     <div class="actions">
       <button id="btnCrearRifa" class="primary-btn">
         ➕ Crear rifa
       </button>
     </div>
 
-    <section id="dynamicSection">
-      <p>Bienvenido al panel.</p>
-    </section>
+    <!-- Opciones tipo tarjetas -->
+    <div class="menu-grid">
+  <div class="menu-card">📋 Mis rifas</div>
+  <div class="menu-card">✉️ Mensajes</div>
+  <div class="menu-card">⏰ Horario</div>
+  <div class="menu-card">⚙️ Configuración</div>
+</div>
+
+
   </main>
 
 </div>
+
+<!-- Barra inferior -->
+<footer class="bottom-bar">
+  Publicidad &nbsp; | &nbsp; Tu anuncio aquí
+</footer>
+
 
 <!-- MODAL FUERA DEL APP CONTAINER (correcto así) -->
 <div id="modalRifa" class="modal hidden">
