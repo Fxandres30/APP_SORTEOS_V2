@@ -14,8 +14,8 @@
   width: 100%;
   max-width: 900px;
   background: white;
-  border-radius: 18px;
-  padding: 25px;
+  border-radius: 10px;
+  padding: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
@@ -26,7 +26,7 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 6px;
-  margin-bottom: 25px;
+  margin-bottom: 13px;
 }
 
 .numero-box {
@@ -51,6 +51,7 @@
 .estado-libre {
   background: #e2e8f0;
   color: #0f172a;
+  border: 1px solid #6d7885;
 }
 
 .estado-reservado {
@@ -69,18 +70,18 @@
 .leyenda-estados {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  font-size: 13px;
-  margin-bottom: 20px;
+  gap: 20px;
+  font-size: 14px;
+  margin-bottom: 5px;
   font-weight: 500;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 6px;
+  margin-right: 2px;
 }
 
 .dot.libre { background: #e2e8f0; }
@@ -147,7 +148,7 @@
    TABLA
 ================================= */
 .lista-numeros {
-  overflow-x: auto;
+  padding: 20px 20px 30px 20px;
 }
 
 .detalle-table {
@@ -157,16 +158,19 @@
   background: #f8fafc;
   border-radius: 14px;
   overflow: hidden;
+  border: 1px solid #6d7885;
 }
 
+
 .detalle-table thead {
-  background: #e2e8f0;
+  background: #8fc9ff;
 }
 
 .detalle-table th,
 .detalle-table td {
   padding: 10px 12px;
   text-align: center;
+  border: 1px solid #6d7885;
 }
 
 .detalle-table th {
@@ -181,6 +185,7 @@
 
 .detalle-table tr:hover {
   background: #f1f5f9;
+    border: 1px solid #6d7885;
 }
 
 /* Estado dentro tabla */
@@ -188,6 +193,7 @@
   color: #475569;
   font-weight: 600;
 }
+
 
 .detalle-table .estado.reservado {
   color: #b45309;
@@ -205,24 +211,24 @@
 @media (max-width: 600px) {
 
   .numeros-card {
-    padding: 18px;
+    padding: 8px;
   }
 
   .numeros-grid {
-    gap: 4px;
+    gap: 1px;
   }
 
   .numero-box {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   #busquedaNumero {
-    max-width: 100%;
+    max-width: 80%;
   }
 
   .detalle-table th,
   .detalle-table td {
     padding: 8px;
-    font-size: 12px;
+    font-size: 13px;
   }
 }
