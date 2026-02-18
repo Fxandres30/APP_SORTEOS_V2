@@ -1,32 +1,40 @@
 /* ===============================
    CONTENEDOR GENERAL
 ================================= */
-.numeros-wrapper {
-  padding: 20px;
+.numeros-container {
+  padding: 25px;
   display: flex;
   justify-content: center;
 }
 
 /* ===============================
-   GRID 10x10 FIJO
+   TARJETA COMPARTIBLE
+================================= */
+.numeros-card {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===============================
+   GRID 10x10
 ================================= */
 .numeros-grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 columnas reales */
+  grid-template-columns: repeat(10, 1fr);
   gap: 6px;
-  width: 100%;
-  max-width: 600px;
+  margin-bottom: 25px;
 }
 
-/* ===============================
-   CUADRADOS
-================================= */
 .numero-box {
-  aspect-ratio: 1 / 1; /* cuadrado perfecto */
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -38,7 +46,7 @@
 }
 
 /* ===============================
-   ESTADOS
+   ESTADOS GRID
 ================================= */
 .estado-libre {
   background: #e2e8f0;
@@ -61,9 +69,10 @@
 .leyenda-estados {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   font-size: 13px;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .dot {
@@ -79,10 +88,65 @@
 .dot.pagado { background: #22c55e; }
 
 /* ===============================
-   LISTA DETALLE (TABLA)
+   FILTROS
+================================= */
+.filtros-estados {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  padding: 7px 16px;
+  font-size: 12px;
+  border-radius: 30px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.filtro-btn:hover {
+  background: #f1f5f9;
+}
+
+.filtro-btn.activo {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* ===============================
+   BUSQUEDA
+================================= */
+.busqueda-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#busquedaNumero {
+  width: 100%;
+  max-width: 350px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+#busquedaNumero:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* ===============================
+   TABLA
 ================================= */
 .lista-numeros {
-  padding: 20px;
   overflow-x: auto;
 }
 
@@ -90,20 +154,19 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  background: white;
-  border-radius: 12px;
+  background: #f8fafc;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
 }
 
 .detalle-table thead {
-  background: #f1f5f9;
+  background: #e2e8f0;
 }
 
 .detalle-table th,
 .detalle-table td {
   padding: 10px 12px;
-  text-align: left;
+  text-align: center;
 }
 
 .detalle-table th {
@@ -112,66 +175,38 @@
 }
 
 .detalle-table td {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid #e2e8f0;
   color: #475569;
 }
 
 .detalle-table tr:hover {
-  background: #f8fafc;
+  background: #f1f5f9;
 }
 
-/* Estado dentro de tabla */
-.detalle-table .estado {
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
+/* Estado dentro tabla */
 .detalle-table .estado.libre {
-  color: #64748b;
+  color: #475569;
+  font-weight: 600;
 }
 
 .detalle-table .estado.reservado {
   color: #b45309;
+  font-weight: 600;
 }
 
 .detalle-table .estado.pagado {
   color: #15803d;
-}
-
-/* ===============================
-   FILTROS LISTA
-================================= */
-.filtros-lista {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.lista-btn {
-  padding: 6px 12px;
-  font-size: 12px;
-  border-radius: 20px;
-  border: 1px solid #cbd5e1;
-  background: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.lista-btn:hover {
-  background: #f1f5f9;
-}
-
-.lista-btn.activo {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
+  font-weight: 600;
 }
 
 /* ===============================
    RESPONSIVE
 ================================= */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+
+  .numeros-card {
+    padding: 18px;
+  }
 
   .numeros-grid {
     gap: 4px;
@@ -179,6 +214,10 @@
 
   .numero-box {
     font-size: 11px;
+  }
+
+  #busquedaNumero {
+    max-width: 100%;
   }
 
   .detalle-table th,

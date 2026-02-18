@@ -10,12 +10,15 @@ export async function cargarVistaNumeros(rifa) {
   showView("numerosView");
 
   view.innerHTML = `
-    <div class="view-header">
-      <button id="volverRifas">← Volver</button>
-      <h2>Números #${String(rifa.numero_rifa).padStart(9, "0")}</h2>
-    </div>
+  <div class="view-header">
+    <button id="volverRifas">← Volver</button>
+    <h2>Números #${String(rifa.numero_rifa).padStart(9, "0")}</h2>
+  </div>
 
-    <div class="numeros-container">
+  <div class="numeros-container">
+
+    <div class="numeros-card">
+
       <div class="numeros-grid"></div>
 
       <div class="leyenda-estados">
@@ -23,7 +26,23 @@ export async function cargarVistaNumeros(rifa) {
         <div><span class="dot reservado"></span> Reservado</div>
         <div><span class="dot pagado"></span> Pagado</div>
       </div>
-
+</div>
+</div>
+      <div class="filtros-estados">
+        <button class="filtro-btn activo" data-estado="todos">Todos</button>
+        <button class="filtro-btn" data-estado="libre">Libres</button>
+        <button class="filtro-btn" data-estado="reservado">Reservados</button>
+        <button class="filtro-btn" data-estado="pagado">Pagados</button>
+      </div>
+</div>
+      <div class="busqueda-wrapper">
+        <input 
+          type="text" 
+          id="busquedaNumero" 
+          placeholder="Buscar por nombre o teléfono..."
+        />
+      </div>
+      
       <div class="lista-numeros">
         <table class="detalle-table">
           <thead>
@@ -37,8 +56,9 @@ export async function cargarVistaNumeros(rifa) {
           <tbody id="detalleNumeros"></tbody>
         </table>
       </div>
-    </div>
-  `;
+
+  </div>
+`;
 
   document.getElementById("volverRifas")
     .addEventListener("click", () => showView("misRifasView"));
@@ -72,20 +92,75 @@ export async function cargarVistaNumeros(rifa) {
   });
 
   // ===========================
-  // 📋 RENDER LISTA
+  // 📋 FILTRO + BUSQUEDA
   // ===========================
 
   const tbody = view.querySelector("#detalleNumeros");
 
-  numeros.forEach(n => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${n.numero}</td>
-      <td class="estado ${n.estado}">${n.estado}</td>
-      <td>${n.nombre || "-"}</td>
-      <td>${n.telefono || "-"}</td>
-    `;
-    tbody.appendChild(tr);
+  let filtroActual = "todos";
+  let textoBusqueda = "";
+
+  function renderLista() {
+
+    tbody.innerHTML = "";
+
+    numeros.forEach(n => {
+
+      // Filtro por estado
+      if (filtroActual !== "todos" && n.estado !== filtroActual) return;
+
+      // Filtro por búsqueda
+      if (textoBusqueda) {
+        const nombre = (n.nombre || "").toLowerCase();
+        const telefono = (n.telefono || "").toLowerCase();
+
+        if (
+          !nombre.includes(textoBusqueda) &&
+          !telefono.includes(textoBusqueda)
+        ) {
+          return;
+        }
+      }
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${n.numero}</td>
+        <td class="estado ${n.estado}">${n.estado}</td>
+        <td>${n.nombre || "-"}</td>
+        <td>${n.telefono || "-"}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  renderLista();
+
+  // ===========================
+  // 🎛 BOTONES FILTRO
+  // ===========================
+
+  view.querySelectorAll(".filtro-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+
+      view.querySelectorAll(".filtro-btn")
+        .forEach(b => b.classList.remove("activo"));
+
+      btn.classList.add("activo");
+
+      filtroActual = btn.dataset.estado;
+      renderLista();
+    });
+  });
+
+  // ===========================
+  // 🔎 BUSQUEDA
+  // ===========================
+
+  const inputBusqueda = view.querySelector("#busquedaNumero");
+
+  inputBusqueda.addEventListener("input", () => {
+    textoBusqueda = inputBusqueda.value.toLowerCase();
+    renderLista();
   });
 
   // ===========================
