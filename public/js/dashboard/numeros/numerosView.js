@@ -1,6 +1,7 @@
 import { supabase } from "../../services/supabase.js";
 import { showView } from "../router.js";
 import { initAccionesNumeros } from "./numerosActions.js";
+import { initCompartirNumeros } from "./numerosShare.js";
 
 export async function cargarVistaNumeros(rifa) {
 
@@ -11,9 +12,12 @@ export async function cargarVistaNumeros(rifa) {
 
   view.innerHTML = `
   <div class="view-header">
-    <button id="volverRifas">← Volver</button>
-    <h2>Números #${String(rifa.numero_rifa).padStart(9, "0")}</h2>
-  </div>
+  <button id="volverRifas">← Volver</button>
+  <h2>Números #${String(rifa.numero_rifa).padStart(9, "0")}</h2>
+  <button id="btnCompartirNumeros" class="btn-compartir">
+    📤 Compartir
+  </button>
+</div>
 
   <div class="numeros-container">
 
@@ -168,4 +172,5 @@ export async function cargarVistaNumeros(rifa) {
   // ===========================
 
   initAccionesNumeros(rifa);
+  initCompartirNumeros();
 }
