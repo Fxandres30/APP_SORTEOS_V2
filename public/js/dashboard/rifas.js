@@ -71,22 +71,26 @@ export function initMisRifas(session) {
   </div>
 </div>
 
+<div class="rifa-actions">
+  <button class="btn-edit" data-id="${rifa.id}">
+    Editar
+  </button>
+  <button class="btn-delete" data-id="${rifa.id}">
+    Eliminar
+  </button>
 
-          <div class="rifa-actions">
-            <button class="btn-edit" data-id="${rifa.id}">
-              Editar
-            </button>
-            <button class="btn-delete" data-id="${rifa.id}">
-              Eliminar
-            </button>
-            ${
-              estado === "activa"
-                ? `<button class="btn-finalizar" data-id="${rifa.id}">
-                    Finalizar
-                  </button>`
-                : ""
-            }
-          </div>
+  <button class="btn-config" data-id="${rifa.id}">
+    ⚙ Configurar
+  </button>
+
+  ${
+    estado === "activa"
+      ? `<button class="btn-finalizar" data-id="${rifa.id}">
+          Finalizar
+        </button>`
+      : ""
+  }
+</div>
 
         </div>
       `;
