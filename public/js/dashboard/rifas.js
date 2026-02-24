@@ -112,39 +112,28 @@ export function initMisRifas(session) {
       });
     });
 
-    // ===========================
-    // ELIMINAR
-    // ===========================
-    document.querySelectorAll(".btn-delete").forEach((btnDelete) => {
-      btnDelete.addEventListener("click", async () => {
-
-        const confirmacion = confirm("¿Seguro que quieres eliminar esta rifa?");
-        if (!confirmacion) return;
-
-        const { error } = await supabase
-          .from("rifas")
-          .delete()
-          .eq("id", btnDelete.dataset.id);
-
-        if (error) {
-          alert("Error al eliminar");
-          return;
-        }
-
-        btnDelete.closest(".rifa-card").remove();
-      });
-    });
-
-    // ===========================
-// FINALIZAR
+  // ===========================
+// ELIMINAR
 // ===========================
-document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
+document.querySelectorAll(".btn-delete").forEach((btnDelete) => {
 
-  btnFinalizar.addEventListener("click", () => {
+  btnDelete.addEventListener("click", () => {
 
     const modal = document.getElementById("confirmModal");
     const btnCancel = document.getElementById("cancelConfirm");
     const btnAccept = document.getElementById("acceptConfirm");
+
+    const modalTitle = modal.querySelector("h3");
+    const modalText = modal.querySelector("p");
+
+    // 🔥 Texto
+    modalTitle.textContent = "Eliminar rifa";
+    modalText.textContent =
+      "¿Seguro que deseas eliminar esta rifa? Esta acción no se puede deshacer.";
+
+    // 🔥 Estilo rojo
+    modal.classList.remove("modal-primary");
+    modal.classList.add("modal-danger");
 
     modal.classList.remove("hidden");
 
@@ -160,7 +149,69 @@ document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
       modal.classList.add("hidden");
     });
 
-    // Confirmar
+    // Confirmar eliminar
+    newBtnAccept.addEventListener("click", async () => {
+
+      modal.classList.add("hidden");
+
+      const { error } = await supabase
+        .from("rifas")
+        .delete()
+        .eq("id", btnDelete.dataset.id);
+
+      if (error) {
+        console.error(error);
+        showMessage("Error al eliminar", "error");
+        return;
+      }
+
+      btnDelete.closest(".rifa-card").remove();
+
+      showMessage("Rifa eliminada correctamente", "success");
+    });
+
+  });
+
+});
+
+    // ===========================
+// FINALIZAR
+// ===========================
+document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
+
+  btnFinalizar.addEventListener("click", () => {
+
+    const modal = document.getElementById("confirmModal");
+    const btnCancel = document.getElementById("cancelConfirm");
+    const btnAccept = document.getElementById("acceptConfirm");
+
+    const modalTitle = modal.querySelector("h3");
+    const modalText = modal.querySelector("p");
+
+    // 🔥 Texto diferente
+    modalTitle.textContent = "Finalizar rifa";
+    modalText.textContent =
+      "Al finalizar la rifa se bloquearán las reservas y se deshabilitará la opción de compartir. ¿Confirmas esta acción?";
+
+    // 🔥 Estilo azul
+    modal.classList.remove("modal-danger");
+    modal.classList.add("modal-primary");
+
+    modal.classList.remove("hidden");
+
+    // 🔥 Limpiar eventos anteriores
+    const newBtnAccept = btnAccept.cloneNode(true);
+    btnAccept.parentNode.replaceChild(newBtnAccept, btnAccept);
+
+    const newBtnCancel = btnCancel.cloneNode(true);
+    btnCancel.parentNode.replaceChild(newBtnCancel, btnCancel);
+
+    // Cancelar
+    newBtnCancel.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    // Confirmar finalizar
     newBtnAccept.addEventListener("click", async () => {
 
       modal.classList.add("hidden");
@@ -188,7 +239,6 @@ document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
   });
 
 });
-
 
     // ===========================
 // ABRIR NÚMEROS AL TOCAR CARD
