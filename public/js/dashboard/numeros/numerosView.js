@@ -8,6 +8,21 @@ export async function cargarVistaNumeros(rifa) {
   const view = document.getElementById("numerosView");
   if (!view) return;
 
+  // 🔥 CONSULTAR RIFA ACTUALIZADA DESDE BD
+  const { data: rifaActualizada, error } = await supabase
+    .from("rifas")
+    .select("*")
+    .eq("id", rifa.id)
+    .single();
+
+  if (error || !rifaActualizada) {
+    console.error("Error cargando rifa:", error);
+    return;
+  }
+
+  // 🔥 USAR LA RIFA ACTUAL
+  rifa = rifaActualizada;
+
   showView("numerosView");
 
   view.innerHTML = `
@@ -118,16 +133,16 @@ export async function cargarVistaNumeros(rifa) {
   // 🔎 CONSULTAR NÚMEROS
   // ===========================
 
-  const { data: numeros, error } = await supabase
+  const { data: numeros, error: errorNumeros } = await supabase
     .from("rifa_numeros")
     .select("*")
     .eq("rifa_id", rifa.id)
     .order("numero", { ascending: true });
 
-  if (error) {
-    alert("Error cargando números");
-    return;
-  }
+  if (errorNumeros) {
+  alert("Error cargando números");
+  return;
+}
 
   // ===========================
   // 🔢 RENDER GRID

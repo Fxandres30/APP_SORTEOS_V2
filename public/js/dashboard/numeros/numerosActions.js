@@ -21,13 +21,28 @@ export function initAccionesNumeros(rifa) {
   panel.classList.add("hidden");
   contador.textContent = "0 seleccionados";
 
-  // 🚫 Si la rifa está finalizada no permitir selección
-  if (rifa.estado === "finalizada") {
-    document.querySelectorAll(".numero-box").forEach((box) => {
-      box.classList.add("bloqueado");
-    });
-    return;
+  // 🚫 BLOQUEAR COMPLETAMENTE SI ESTÁ FINALIZADA
+if (rifa.estado === "finalizada") {
+
+  document.querySelectorAll(".numero-box").forEach((box) => {
+    box.classList.add("bloqueado");
+    box.style.pointerEvents = "none";
+    box.style.opacity = "0.6";
+  });
+
+  // Ocultar panel por seguridad
+  panel.classList.add("hidden");
+
+  // Desactivar botón compartir
+  const btnCompartir = document.getElementById("btnCompartirNumeros");
+  if (btnCompartir) {
+    btnCompartir.disabled = true;
+    btnCompartir.style.opacity = "0.5";
+    btnCompartir.style.pointerEvents = "none";
   }
+
+  return;
+}
 
   // ==============================
   // 🔘 SELECCIÓN DE NÚMEROS
