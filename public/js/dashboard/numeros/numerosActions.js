@@ -1,5 +1,6 @@
 import { supabase } from "../../services/supabase.js";
 import { cargarVistaNumeros } from "./numerosView.js";
+import { showMessage } from "../../utils/showMessage.js";
 
 let seleccionados = [];
 let rifaActual = null;
@@ -84,7 +85,12 @@ export function initAccionesNumeros(rifa) {
   // ==============================
   btnGuardar.addEventListener("click", async () => {
 
-    if (seleccionados.length === 0) return;
+  if (seleccionados.length === 0) return;
+
+  btnGuardar.disabled = true;
+  btnGuardar.textContent = "Guardando...";
+
+  try {
 
     const nuevoEstado = document.querySelector(
       'input[name="estadoNumero"]:checked'
@@ -93,52 +99,52 @@ export function initAccionesNumeros(rifa) {
     const nombre = inputNombre.value.trim();
     const telefono = inputTelefono.value.trim();
 
-    btnGuardar.disabled = true;
-    btnGuardar.textContent = "Guardando...";
+    for (const id of seleccionados) {
 
-    try {
+      const updateData = {
+        estado: nuevoEstado,
+        updated_at: new Date()
+      };
 
-      for (const id of seleccionados) {
-
-        const updateData = {
-          estado: nuevoEstado,
-          updated_at: new Date()
-        };
-
-        if (nuevoEstado === "libre") {
-          updateData.nombre = null;
-          updateData.telefono = null;
-        }
-
-        if (nombre !== "") updateData.nombre = nombre;
-        if (telefono !== "") updateData.telefono = telefono;
-
-        const { error } = await supabase
-          .from("rifa_numeros")
-          .update(updateData)
-          .eq("id", id);
-
-        if (error) throw error;
-
+      if (nuevoEstado === "libre") {
+        updateData.nombre = null;
+        updateData.telefono = null;
       }
 
-      showMessage("Cambios guardados correctamente", "success");
+      if (nombre !== "") updateData.nombre = nombre;
+      if (telefono !== "") updateData.telefono = telefono;
 
-      seleccionados = [];
-      inputNombre.value = "";
-      inputTelefono.value = "";
-      panel.classList.add("hidden");
+      const { error } = await supabase
+        .from("rifa_numeros")
+        .update(updateData)
+        .eq("id", id);
 
-      cargarVistaNumeros(rifaActual);
-
-    } catch (error) {
-      console.error(error);
-      showMessage("Error al guardar cambios", "error");
+      if (error) throw error;
     }
 
-    btnGuardar.disabled = false;
-    btnGuardar.textContent = "Guardar cambios";
+    showMessage("Cambios guardados correctamente", "success");
 
-  });
+    // 🔥 Reset UI antes de recargar vista
+    seleccionados = [];
+    inputNombre.value = "";
+    inputTelefono.value = "";
+    panel.classList.add("hidden");
+
+    btnGuardar.disabled = false;
+    btnGuardar.textContent = "Guardar";
+
+    // 🔄 Ahora sí recarga
+    cargarVistaNumeros(rifaActual);
+
+  } catch (error) {
+
+    console.error(error);
+    showMessage("Error al guardar cambios", "error");
+
+    btnGuardar.disabled = false;
+    btnGuardar.textContent = "Guardar";
+  }
+
+});
 
 }
