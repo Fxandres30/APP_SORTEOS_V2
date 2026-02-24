@@ -3,10 +3,18 @@ import { showView } from "../router.js";
 import { initAccionesNumeros } from "./numerosActions.js";
 import { initCompartirNumeros } from "./numerosShare.js";
 
+let renderizando = false;
+
 export async function cargarVistaNumeros(rifa) {
 
+  if (renderizando) return;
+  renderizando = true;
+
   const view = document.getElementById("numerosView");
-  if (!view) return;
+  if (!view) {
+    renderizando = false;
+    return;
+  }
 
   // 🔥 CONSULTAR RIFA ACTUALIZADA DESDE BD
   const { data: rifaActualizada, error } = await supabase
@@ -17,10 +25,10 @@ export async function cargarVistaNumeros(rifa) {
 
   if (error || !rifaActualizada) {
     console.error("Error cargando rifa:", error);
+    renderizando = false;
     return;
   }
 
-  // 🔥 USAR LA RIFA ACTUAL
   rifa = rifaActualizada;
 
   showView("numerosView");
@@ -123,15 +131,10 @@ export async function cargarVistaNumeros(rifa) {
       </div>
 
     </div>
-
-  
 `;
+
   document.getElementById("volverRifas")
     .addEventListener("click", () => showView("misRifasView"));
-
-  // ===========================
-  // 🔎 CONSULTAR NÚMEROS
-  // ===========================
 
   const { data: numeros, error: errorNumeros } = await supabase
     .from("rifa_numeros")
@@ -140,30 +143,23 @@ export async function cargarVistaNumeros(rifa) {
     .order("numero", { ascending: true });
 
   if (errorNumeros) {
-  alert("Error cargando números");
-  return;
-}
-
-  // ===========================
-  // 🔢 RENDER GRID
-  // ===========================
+    alert("Error cargando números");
+    renderizando = false;
+    return;
+  }
 
   const grid = view.querySelector(".numeros-grid");
 
+  // 🧹 LIMPIEZA SEGURA
+  grid.innerHTML = "";
+
   numeros.forEach(n => {
-  const div = document.createElement("div");
-
-  div.className = `numero-box estado-${n.estado}`;
-  div.textContent = n.numero;
-
-  // 🔥 MUY IMPORTANTE
-  div.dataset.id = n.id;
-
-  grid.appendChild(div);
-});
-  // ===========================
-  // 📋 FILTRO + BUSQUEDA
-  // ===========================
+    const div = document.createElement("div");
+    div.className = `numero-box estado-${n.estado}`;
+    div.textContent = n.numero;
+    div.dataset.id = n.id;
+    grid.appendChild(div);
+  });
 
   const tbody = view.querySelector("#detalleNumeros");
 
@@ -171,15 +167,12 @@ export async function cargarVistaNumeros(rifa) {
   let textoBusqueda = "";
 
   function renderLista() {
-
     tbody.innerHTML = "";
 
     numeros.forEach(n => {
 
-      // Filtro por estado
       if (filtroActual !== "todos" && n.estado !== filtroActual) return;
 
-      // Filtro por búsqueda
       if (textoBusqueda) {
         const nombre = (n.nombre || "").toLowerCase();
         const telefono = (n.telefono || "").toLowerCase();
@@ -187,9 +180,7 @@ export async function cargarVistaNumeros(rifa) {
         if (
           !nombre.includes(textoBusqueda) &&
           !telefono.includes(textoBusqueda)
-        ) {
-          return;
-        }
+        ) return;
       }
 
       const tr = document.createElement("tr");
@@ -205,26 +196,16 @@ export async function cargarVistaNumeros(rifa) {
 
   renderLista();
 
-  // ===========================
-  // 🎛 BOTONES FILTRO
-  // ===========================
-
   view.querySelectorAll(".filtro-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-
       view.querySelectorAll(".filtro-btn")
         .forEach(b => b.classList.remove("activo"));
 
       btn.classList.add("activo");
-
       filtroActual = btn.dataset.estado;
       renderLista();
     });
   });
-
-  // ===========================
-  // 🔎 BUSQUEDA
-  // ===========================
 
   const inputBusqueda = view.querySelector("#busquedaNumero");
 
@@ -233,11 +214,8 @@ export async function cargarVistaNumeros(rifa) {
     renderLista();
   });
 
-  // ===========================
-  // 🔗 Acciones
-  // ===========================
-
   initAccionesNumeros(rifa);
   initCompartirNumeros();
+
+  renderizando = false;
 }
- 
