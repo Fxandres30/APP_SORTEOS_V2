@@ -11,21 +11,23 @@
    HEADER SUPERIOR
 ========================= */
 .view-header {
-  display: flex;
-  align-items: center;
-  gap: 45px;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  color: white;
-  padding: 20px;
   position: sticky;
   top: 0;
   z-index: 20;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 20px;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .view-header h2 {
-  font-size: 20px;
-  font-weight: 600;
+  text-align: center;
   margin: 0;
 }
 
@@ -88,11 +90,6 @@
   align-items: center;
 }
 
-.rifa-numero {
-  font-weight: 600;
-  font-size: 14px;
-  color: #475569;
-}
 
 /* =========================
    ESTADO
@@ -150,7 +147,7 @@
 /* =========================
    BOTONES
 ========================= */
-.btn-ver,
+.btn-config,
 .btn-edit,
 .btn-delete,
 .btn-finalizar {
@@ -164,12 +161,12 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.btn-ver {
+.btn-config {
   background: #2563eb;
   color: white;
 }
 
-.btn-ver:hover {
+.btn-config:hover {
   background: #1e40af;
 }
 
@@ -191,6 +188,7 @@
   background: #dc2626;
 }
 
+
 .btn-finalizar {
   background: #0f172a;
   color: white;
@@ -211,4 +209,11 @@
   color: #64748b;
   font-weight: 500;
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+
+.rifa-numero {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.8;
 }

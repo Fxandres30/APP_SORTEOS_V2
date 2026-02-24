@@ -13,7 +13,12 @@ export async function cargarVistaNumeros(rifa) {
   view.innerHTML = `
   <div class="view-header">
   <button id="volverRifas">← Volver</button>
-  <h2>Números #${String(rifa.numero_rifa).padStart(9, "0")}</h2>
+  <h2>
+  ${rifa.titulo || "Rifa"} 
+  <span class="rifa-numero">
+    #${String(rifa.numero_rifa).padStart(9, "0")}
+  </span>
+</h2>
   <button id="btnCompartirNumeros" class="btn-compartir">
     📤 Compartir
   </button>

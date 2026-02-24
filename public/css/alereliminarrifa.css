@@ -1,0 +1,75 @@
+
+/* =========================
+   ALERT
+========================= */
+
+/* ================= CONFIRM MODAL ================= */
+
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.confirm-modal.hidden {
+  display: none;
+}
+
+.confirm-box {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.confirm-box h3 {
+  margin-bottom: 10px;
+}
+
+.confirm-box p {
+  margin-bottom: 20px;
+  color: #475569;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirm-actions button {
+  min-width: 120px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+}
+
+/* Cancelar (gris elegante) */
+.secondary-btn {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.secondary-btn:hover {
+  background: #cbd5e1;
+}
+
+/* Finalizar (rojo) */
+.danger-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.danger-btn:hover {
+  background: #b91c1c;
+}

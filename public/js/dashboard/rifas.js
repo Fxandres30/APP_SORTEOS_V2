@@ -77,6 +77,7 @@ export function initMisRifas(session) {
   </button>
   <button class="btn-delete" data-id="${rifa.id}">
     Eliminar
+    
   </button>
 
   <button class="btn-config" data-id="${rifa.id}">
@@ -135,31 +136,58 @@ export function initMisRifas(session) {
     });
 
     // ===========================
-    // FINALIZAR
-    // ===========================
-    document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
-      btnFinalizar.addEventListener("click", async () => {
+// FINALIZAR
+// ===========================
+document.querySelectorAll(".btn-finalizar").forEach((btnFinalizar) => {
 
-        const confirmacion = confirm("¿Deseas finalizar esta rifa?");
-        if (!confirmacion) return;
+  btnFinalizar.addEventListener("click", () => {
 
-        const { error } = await supabase
-          .from("rifas")
-          .update({ estado: "finalizada" })
-          .eq("id", btnFinalizar.dataset.id);
+    const modal = document.getElementById("confirmModal");
+    const btnCancel = document.getElementById("cancelConfirm");
+    const btnAccept = document.getElementById("acceptConfirm");
 
-        if (error) {
-          alert("Error al finalizar");
-          return;
-        }
+    modal.classList.remove("hidden");
 
-        const card = btnFinalizar.closest(".rifa-card");
-        card.querySelector(".estado").className = "estado finalizada";
-        card.querySelector(".estado").textContent = "Finalizada";
+    // 🔥 Limpiar eventos anteriores
+    const newBtnAccept = btnAccept.cloneNode(true);
+    btnAccept.parentNode.replaceChild(newBtnAccept, btnAccept);
 
-        btnFinalizar.remove();
-      });
+    const newBtnCancel = btnCancel.cloneNode(true);
+    btnCancel.parentNode.replaceChild(newBtnCancel, btnCancel);
+
+    // Cancelar
+    newBtnCancel.addEventListener("click", () => {
+      modal.classList.add("hidden");
     });
+
+    // Confirmar
+    newBtnAccept.addEventListener("click", async () => {
+
+      modal.classList.add("hidden");
+
+      const { error } = await supabase
+        .from("rifas")
+        .update({ estado: "finalizada" })
+        .eq("id", btnFinalizar.dataset.id);
+
+      if (error) {
+        console.error(error);
+        showMessage("Error al finalizar", "error");
+        return;
+      }
+
+      const card = btnFinalizar.closest(".rifa-card");
+      card.querySelector(".estado").className = "estado finalizada";
+      card.querySelector(".estado").textContent = "Finalizada";
+
+      btnFinalizar.remove();
+
+      showMessage("Rifa finalizada correctamente", "success");
+    });
+
+  });
+
+});
 
 
     // ===========================

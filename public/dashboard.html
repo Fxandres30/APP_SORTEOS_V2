@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/misrifas.css">
   <link rel="stylesheet" href="css/numeros.css">
+  <link rel="stylesheet" href="css/alereliminarrifa.css">
     <link rel="stylesheet" href="css/configuracion.css">
 </head>
 
@@ -108,7 +109,18 @@
 <!-- SOLO UN SCRIPT -->
 <script type="module" src="js/dashboard/dashboard.js"></script>
 <script type="module" src="js/dashboard/configuracion.js"></script>
-<script type="module" src="/register.js"></script>
+<script type="module" src="js/register.js"></script>
+
+<div id="confirmModal" class="confirm-modal hidden">
+  <div class="confirm-box">
+    <h3>Finalizar rifa</h3>
+    <p>¿Seguro que deseas finalizar esta rifa?</p>
+    <div class="confirm-actions">
+      <button id="cancelConfirm" class="secondary-btn">Cancelar</button>
+      <button id="acceptConfirm" class="danger-btn">Finalizar</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
