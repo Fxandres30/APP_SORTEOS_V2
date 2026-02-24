@@ -35,6 +35,47 @@ export async function cargarVistaNumeros(rifa) {
         <div><span class="dot reservado"></span> Reservado</div>
         <div><span class="dot pagado"></span> Pagado</div>
       </div>
+      
+      <!-- PANEL ACCIONES -->
+  <div id="accionesNumeros" class="acciones-panel hidden">
+
+    <div class="acciones-header">
+      <span id="contadorSeleccion">0 seleccionados</span>
+    </div>
+
+    <div class="acciones-inputs">
+      <input type="text" id="nombreCliente" placeholder="Nombre cliente" />
+      <input type="text" id="telefonoCliente" placeholder="Teléfono cliente" />
+    </div>
+
+    <div class="estado-opciones">
+      <label>
+        <input type="radio" name="estadoNumero" value="reservado" checked />
+        Reservado
+      </label>
+
+      <label>
+        <input type="radio" name="estadoNumero" value="pagado" />
+        Pagado
+      </label>
+
+      <label>
+        <input type="radio" name="estadoNumero" value="libre" />
+        Libre
+      </label>
+    </div>
+
+    <div class="acciones-buttons">
+      <button id="guardarCambios" class="primary-btn">
+        Guardar
+      </button>
+
+      <button id="cancelarSeleccion" class="secondary-btn">
+        Cancelar
+      </button>
+    </div>
+
+  </div>
 </div>
 </div>
       <div class="filtros-estados">
@@ -66,9 +107,10 @@ export async function cargarVistaNumeros(rifa) {
         </table>
       </div>
 
-  </div>
-`;
+    </div>
 
+  
+`;
   document.getElementById("volverRifas")
     .addEventListener("click", () => showView("misRifasView"));
 
@@ -94,12 +136,16 @@ export async function cargarVistaNumeros(rifa) {
   const grid = view.querySelector(".numeros-grid");
 
   numeros.forEach(n => {
-    const div = document.createElement("div");
-    div.className = `numero-box estado-${n.estado}`;
-    div.textContent = n.numero;
-    grid.appendChild(div);
-  });
+  const div = document.createElement("div");
 
+  div.className = `numero-box estado-${n.estado}`;
+  div.textContent = n.numero;
+
+  // 🔥 MUY IMPORTANTE
+  div.dataset.id = n.id;
+
+  grid.appendChild(div);
+});
   // ===========================
   // 📋 FILTRO + BUSQUEDA
   // ===========================
@@ -179,3 +225,4 @@ export async function cargarVistaNumeros(rifa) {
   initAccionesNumeros(rifa);
   initCompartirNumeros();
 }
+ 

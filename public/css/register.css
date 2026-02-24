@@ -95,3 +95,51 @@
 .register-container .auth-link a:hover {
   text-decoration: underline;
 }
+
+/* ===============================
+   PANEL ACCIONES NORMAL
+================================= */
+
+.acciones-panel {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.acciones-panel.hidden {
+  display: none;
+}
+
+.acciones-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.acciones-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.acciones-inputs input {
+  flex: 1;
+  min-width: 150px;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.estado-opciones {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.acciones-buttons {
+  display: flex;
+  gap: 10px;
+}
