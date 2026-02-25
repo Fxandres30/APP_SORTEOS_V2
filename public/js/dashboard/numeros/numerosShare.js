@@ -25,14 +25,34 @@ export function initCompartirNumeros() {
 
 Revisa la disponibilidad actual 👀`;
 
-      if (navigator.share) {
-        await navigator.share({
-          title: "Estado de números",
-          text: texto,
-          files: [file]
-        });
-      } else {
-        alert("Tu dispositivo no soporta compartir imágenes.");
+      try {
+
+        // 🔥 CASO 1: Soporta compartir archivos
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+
+          await navigator.share({
+            title: "Estado de números",
+            text: texto,
+            files: [file]
+          });
+
+        } 
+        // 🔥 CASO 2: Solo soporta texto
+        else if (navigator.share) {
+
+          await navigator.share({
+            title: "Estado de números",
+            text: texto
+          });
+
+        } 
+        // 🔥 CASO 3: No soporta nada
+        else {
+          alert("Tu dispositivo no soporta compartir.");
+        }
+
+      } catch (error) {
+        console.error("Error al compartir:", error);
       }
 
     });
