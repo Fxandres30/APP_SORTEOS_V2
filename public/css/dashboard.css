@@ -50,12 +50,12 @@ body {
 }
 
 .logout-btn {
-  background: rgba(255,255,255,0.1);
+  background: rgb(212, 93, 93);
   border: none;
-  padding: 6px 14px;
+  padding: 10px 14px;
   border-radius: 20px;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* ===== CONTENIDO ===== */
@@ -95,8 +95,8 @@ body {
 
 /* ===== BIENVENIDA ===== */
 .welcome-title {
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 25px;
+  margin-bottom: 30px;
   font-weight: 600;
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .menu-card {
-  background: #ffffff;
+  background: #8d8d8d83;
   padding: 22px;
   border-radius: 14px;
   border: 1px solid #e2e8f0;
