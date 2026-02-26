@@ -4,7 +4,13 @@ import { cargarVistaNumeros } from "./numeros/numerosView.js";
 
 export function initMisRifas(session) {
 
-  const btn = document.getElementById("btnMisRifas");
+  let btn = document.getElementById("btnMisRifas");
+if (!btn) return;
+
+// 🔥 limpiar eventos anteriores
+const newBtn = btn.cloneNode(true);
+btn.parentNode.replaceChild(newBtn, btn);
+btn = newBtn;
   const view = document.getElementById("misRifasView");
 
   if (!btn || !view) return;
