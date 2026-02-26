@@ -2,17 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-
-  <!-- Mobile first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2563eb">
-
   <title>Crear cuenta - EFAAT</title>
 
-  <!-- CSS base -->
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- CSS específico registro -->
   <link rel="stylesheet" href="css/register.css">
 </head>
 
@@ -24,6 +18,8 @@
 
       <h2 class="app-title">Crear cuenta</h2>
 
+      <div id="formMsg" class="form-msg"></div>
+
       <div class="form-group">
         <input type="text" id="name" placeholder="Nombre completo" required>
       </div>
@@ -32,16 +28,24 @@
         <input type="email" id="email" placeholder="Correo electrónico" required>
       </div>
 
-      <div class="form-group">
-        <input type="password" id="password" placeholder="Contraseña" required>
-      </div>
+      <div class="form-group password-wrapper">
+  <input type="password" id="password" placeholder="Contraseña" required>
+  <span class="toggle-password" id="togglePass">Ver</span>
+</div>
 
       <div class="form-group">
         <input type="text" id="referralCode" placeholder="Código referido (opcional)">
       </div>
 
       <button id="registerBtn" class="primary-btn">
-        Registrarme
+  <span>Registrarme</span>
+  <div class="loader"></div>
+</button>
+
+      <div class="divider">o</div>
+
+      <button id="googleBtn" class="google-btn">
+        Continuar con Google
       </button>
 
       <p class="auth-link">

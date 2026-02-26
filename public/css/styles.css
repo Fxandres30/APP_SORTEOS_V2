@@ -1,6 +1,6 @@
 /* ======================================== */
 /* ===== Estilos Registro Y Logins ===== */
-
+/* ======================================== */
 
 /* ===== RESET ===== */
 * {
@@ -11,7 +11,7 @@
 }
 
 body {
-  background: #0f172a; /* fondo oscuro moderno */
+  background: #0f172a;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -45,6 +45,24 @@ body {
   color: #0f172a;
 }
 
+/* ===== MENSAJE DE FORMULARIO ===== */
+.form-msg {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 18px;
+  font-weight: 500;
+  min-height: 18px;
+}
+
+.form-msg.success {
+  color: #16a34a;
+}
+
+.form-msg.error {
+  color: #dc2626;
+}
+
 /* ===== INPUTS ===== */
 .form-group {
   margin-bottom: 18px;
@@ -60,13 +78,43 @@ input {
   transition: all 0.25s ease;
 }
 
+input:hover {
+  background: #e2e8f0;
+}
+
 input:focus {
   outline: none;
   background: #ffffff;
   box-shadow: 0 0 0 2px #2563eb;
 }
 
-/* ===== BOTÓN ===== */
+/* ===== PASSWORD WRAPPER ===== */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 60px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s ease;
+}
+
+.toggle-password:hover {
+  opacity: 0.7;
+}
+
+/* ===== BOTÓN PRINCIPAL ===== */
 .primary-btn {
   width: 100%;
   padding: 16px;
@@ -80,11 +128,94 @@ input:focus {
   margin-top: 10px;
   transition: all 0.2s ease;
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
 }
 
 .primary-btn:active {
   transform: scale(0.96);
   box-shadow: 0 5px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== LOADER ===== */
+.loader {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: none;
+}
+
+.primary-btn.loading span {
+  display: none;
+}
+
+.primary-btn.loading .loader {
+  display: block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 22px 0;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.divider:not(:empty)::before {
+  margin-right: 12px;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 12px;
+}
+
+/* ===== BOTÓN GOOGLE ===== */
+.google-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.google-btn:active {
+  transform: scale(0.97);
 }
 
 /* ===== LINK ===== */
@@ -101,6 +232,10 @@ input:focus {
   font-weight: 600;
 }
 
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
 /* ===== ANIMACIÓN ===== */
 @keyframes fadeIn {
   from {
@@ -110,5 +245,17 @@ input:focus {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .app-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .app-title {
+    font-size: 20px;
   }
 }
