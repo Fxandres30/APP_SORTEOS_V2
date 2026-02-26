@@ -1,176 +1,198 @@
-/* ================= RESET GLOBAL ================= */
-
-*,
-*::before,
-*::after {
+/* ===== RESET ===== */
+* {
   box-sizing: border-box;
 }
 
-/* ================= BASE ================= */
-
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               'Segoe UI', Roboto;
-  background: linear-gradient(135deg, #e0f2fe, #f1f5f9);
-
-  display: flex;              /* 👈 CLAVE */
-  flex-direction: column;     /* 👈 CLAVE */
-  min-height: 100vh;          /* 👈 CLAVE */
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
 }
 
-/* ================= HEADER ================= */
-
+/* ===== HEADER PROFESIONAL ===== */
+/* ===== HEADER CON SAFE AREA REAL ===== */
 .topbar {
-  width: 100%;
-  background: #0f172a;
-  color: white;
-  padding: 55px 20px 20px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.topbar h1 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-#logoutBtn {
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: none;
-  background: #ef4444;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-#logoutBtn:hover {
-  background: #dc2626;
-}
-
-/* ================= CONTENEDOR ================= */
-
-.app-container {
-  width: 100%;
-  max-width: 480px;
-  margin: auto;
-  padding: 25px 20px;
-
-  flex: 1;   /* 👈 ESTO EMPUJA EL FOOTER HACIA ABAJO */
-}
-
-/* ================= PROMO CARD ================= */
-
-.promo-card {
-  background: #e0f2fe;
-  border: 1px solid #bae6fd;
-  color: #1e3a8a;
-
-  padding: 15px;
-  border-radius: 14px;
-  margin-bottom: 25px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* ================= BIENVENIDA ================= */
-
-.welcome-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #1f2937;
-  line-height: 1.2;
-}
-
-.welcome-title span {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-/* ================= BOTÓN PRINCIPAL ================= */
-
-.primary-btn {
-  width: 100%;
-  padding: 16px;
-  border-radius: 16px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  color: white;
-
-  transition: 0.3s ease;
-}
-
-.primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
-}
-
-/* ================= TARJETAS MENÚ ================= */
-
-/* ================= GRID MENÚ ================= */
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 👈 2 columnas */
-  gap: 15px;
-  margin-top: 10px;
-}
-
-/* Tarjetas */
-.menu-card {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
-
-  font-size: 15px;
-  font-weight: 500;
-  color: #2563eb;
-  text-align: center;
-
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.menu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* ================= FOOTER ================= */
-
-.bottom-bar {
-  width: 100%;
-  background: #0f172a;
-  color: #9ca3af;
-  text-align: center;
-  padding: 18px;
-  font-size: 12px;
-}
-
-/* ========== VISTAS DE BOTONES ================= */
-
-
-.hidden {
-  display: none;
-}
-
-.view {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: white;
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 200;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding-top: calc(env(safe-area-inset-top) + 10px);
+  z-index: 1000;
+}
+
+.topbar-content {
+  height: 80px;
+  padding: 100px 20px 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.topbar-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.topbar-subtitle {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.logout-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+}
+
+/* ===== CONTENIDO ===== */
+.app-container {
+  padding-top: 150px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 40px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== MENSAJE GLOBAL ===== */
+.global-msg {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+  z-index: 2000;
+}
+
+/* ===== PROMO ===== */
+.promo-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* ===== BIENVENIDA ===== */
+.welcome-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.welcome-title span {
+  color: #2563eb;
+}
+
+/* ===== BOTÓN PRINCIPAL ===== */
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:active {
+  background: #1e40af;
+}
+
+/* ===== GRID ===== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.menu-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.menu-card:active {
+  background: #f1f5f9;
+}
+
+/* ===== FOOTER SIMPLE ===== */
+.bottom-bar {
+  display: none; /* Profesionalmente lo quitamos */
+}
+
+/* ===== VISTAS ===== */
+.view {
+  display: none;
+}
+
+.view:not(.hidden) {
+  display: block;
+}
+
+/* ===== FOOTER ANUNCIOS PROFESIONAL ===== */
+.ad-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  /* Respeta barra inferior del sistema */
+  padding-bottom: env(safe-area-inset-bottom);
+
+  background: #0f172a;
+  border-top: 1px solid #e2e8f0;
+  z-index: 900;
+}
+
+.ad-container {
+  padding: 10px 16px 12px 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.ad-label {
+  font-size: 11px;
+  color: #757575;
+  display: block;
+  margin-bottom: 4px;
+}
+
+#adSlot {
+  height: 60px; /* tamaño banner estándar */
+  background: #cccccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #64748b;
 }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2563eb">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
 
   <title>Dashboard - EFAAT</title>
 
@@ -21,8 +21,18 @@
 <body>
 
 <header class="topbar">
-  <h1>Panel</h1>
-  <button id="logoutBtn">Cerrar sesión</button>
+  <div class="topbar-content">
+
+    <div class="topbar-title-row">
+      <h1>Panel</h1>
+      <button id="logoutBtn" class="logout-btn">Salir</button>
+    </div>
+
+    <div class="topbar-subtitle">
+      Gestiona tus eventos
+    </div>
+
+  </div>
 </header>
 
 <div id="globalMsg" class="global-msg"></div>
@@ -32,9 +42,9 @@
   <!-- ================= DASHBOARD PRINCIPAL ================= -->
   <main id="dashboardView">
 
-    <div class="promo-card">
+    <!-- <div class="promo-card">
       🎁 Invita a un amigo y desbloquea beneficios exclusivos
-    </div>
+    </div> -->
 
     <h2 class="welcome-title">
       Bienvenido,<br>
@@ -65,10 +75,14 @@
 
 </div>
 
-<footer class="bottom-bar">
-  Publicidad &nbsp; | &nbsp; Tu anuncio aquí
+<footer class="ad-footer">
+  <div class="ad-container">
+    <span class="ad-label">Publicidad</span>
+    <div id="adSlot">
+      Tu anuncio aquí
+    </div>
+  </div>
 </footer>
-
 
 <!-- ================= MODAL ================= -->
 <div id="modalRifa" class="modal hidden">
