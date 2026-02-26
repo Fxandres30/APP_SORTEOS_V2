@@ -6,6 +6,42 @@ import { initHorarios } from "./horarios.js";
 import { initConfiguracion } from "./configuracion.js";
 import { initCrearRifa } from "./crearRifa.js";
 
+// ================= ROUTER SIMPLE =================
+
+function showView(viewId, addToHistory = true) {
+
+  document.getElementById("dashboardView").classList.add("hidden");
+
+  document.querySelectorAll(".view").forEach(view => {
+    view.classList.add("hidden");
+  });
+
+  const selectedView = document.getElementById(viewId);
+  if (selectedView) {
+    selectedView.classList.remove("hidden");
+  }
+
+  if (addToHistory) {
+    history.pushState({ view: viewId }, "", "#" + viewId);
+  }
+}
+
+function showDashboard(addToHistory = true) {
+
+  document.querySelectorAll(".view").forEach(view => {
+    view.classList.add("hidden");
+  });
+
+  document.getElementById("dashboardView")
+    .classList.remove("hidden");
+
+  if (addToHistory) {
+    history.pushState({ view: "dashboardView" }, "", "#dashboard");
+  }
+}
+
+// ================= INICIO APP =================
+
 document.addEventListener("DOMContentLoaded", async () => {
 
   try {
@@ -28,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       welcome.textContent = profile.name;
     }
 
+    // ===== LOGOUT =====
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", async () => {
@@ -36,15 +73,57 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // 🚀 INICIALIZAR MÓDULOS
+    // ===== BOTONES MENU =====
+    const btnMisRifas = document.getElementById("btnMisRifas");
+    if (btnMisRifas) {
+      btnMisRifas.addEventListener("click", () => {
+        showView("misRifasView");
+      });
+    }
+
+    const btnConfiguracion = document.getElementById("btnConfiguracion");
+    if (btnConfiguracion) {
+      btnConfiguracion.addEventListener("click", () => {
+        showView("configuracionView");
+      });
+    }
+
+    // ===== INICIALIZAR MODULOS =====
     initMisRifas(session);
     initMensajes(session);
     initHorarios(session);
     initConfiguracion(session);
-    initCrearRifa(); // SOLO AQUÍ
+    initCrearRifa();
+
+    // ===== RESTAURAR HASH AL CARGAR =====
+    const hash = window.location.hash.replace("#", "");
+
+    if (hash && document.getElementById(hash)) {
+      showView(hash, false);
+    } else {
+      showDashboard(false);
+    }
 
   } catch (error) {
     console.error("Error en dashboard:", error);
+  }
+
+});
+
+// ===== MANEJO BOTON ATRAS =====
+
+window.addEventListener("popstate", (event) => {
+
+  if (event.state && event.state.view) {
+
+    if (event.state.view === "dashboardView") {
+      showDashboard(false);
+    } else {
+      showView(event.state.view, false);
+    }
+
+  } else {
+    showDashboard(false);
   }
 
 });
