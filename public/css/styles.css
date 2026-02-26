@@ -1,16 +1,114 @@
-/* ================= LAYOUT GLOBAL ================= */
+/* ======================================== */
+/* ===== Estilos Registro Y Logins ===== */
 
-body {
+
+/* ===== RESET ===== */
+* {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
 
+body {
+  background: #0f172a; /* fondo oscuro moderno */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  background: #f3f4f6; /* fondo suave tipo app */
+/* ===== CONTENEDOR GENERAL ===== */
+.app-wrapper {
+  width: 100%;
+  padding: 20px;
+}
 
-  padding-top: 40px;   /* 👈 espacio para barra superior */
-  box-sizing: border-box;
+/* ===== TARJETA PRINCIPAL ===== */
+.app-card {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== TÍTULO ===== */
+.app-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #0f172a;
+}
+
+/* ===== INPUTS ===== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: #f1f5f9;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+input:focus {
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px #2563eb;
+}
+
+/* ===== BOTÓN ===== */
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.primary-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== LINK ===== */
+.auth-link {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-link a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -3,47 +3,53 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- Mobile first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2563eb">
 
-  <title>Registro - EFAAT</title>
+  <title>Crear cuenta - EFAAT</title>
 
-  <!-- Base general -->
+  <!-- CSS base -->
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Estilos solo de registro -->
+  <!-- CSS específico registro -->
   <link rel="stylesheet" href="css/register.css">
 </head>
+
 <body>
 
-  <div class="app-container register-container">
+  <div class="app-wrapper">
 
-    <h2 class="app-title">Crear cuenta</h2>
+    <div class="app-card">
 
-    <div class="form-group">
-      <input type="text" id="name" placeholder="Nombre">
+      <h2 class="app-title">Crear cuenta</h2>
+
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Nombre completo" required>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Contraseña" required>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="referralCode" placeholder="Código referido (opcional)">
+      </div>
+
+      <button id="registerBtn" class="primary-btn">
+        Registrarme
+      </button>
+
+      <p class="auth-link">
+        ¿Ya tienes cuenta?
+        <a href="index.html">Iniciar sesión</a>
+      </p>
+
     </div>
-
-    <div class="form-group">
-      <input type="email" id="email" placeholder="Email">
-    </div>
-
-    <div class="form-group">
-      <input type="password" id="password" placeholder="Contraseña">
-    </div>
-
-    <div class="form-group">
-      <input type="text" id="referralCode" placeholder="Código referido (opcional)">
-    </div>
-
-    <button id="registerBtn" class="primary-btn">
-      Registrarse
-    </button>
-
-    <p class="auth-link">
-      ¿Ya tienes cuenta?
-      <a href="index.html">Iniciar sesión</a>
-    </p>
 
   </div>
 
