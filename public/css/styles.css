@@ -1,0 +1,16 @@
+/* ================= LAYOUT GLOBAL ================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f3f4f6; /* fondo suave tipo app */
+
+  padding-top: 40px;   /* 👈 espacio para barra superior */
+  box-sizing: border-box;
+}
